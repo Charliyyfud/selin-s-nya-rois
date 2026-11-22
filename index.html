@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SELAMAT ULANG TAHUN ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#d6254d;--deep:#7a1030;--pink:#ff8fab;--blush:#ffe3ea;--cream:#fff7f4;--gold:#ffc857}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Serif Display',Georgia,serif;background:var(--cream);color:var(--deep);line-height:1.7;overflow-x:hidden;background-image:radial-gradient(circle at 20% 10%,#ffd9e2 0,transparent 40%),radial-gradient(circle at 85% 70%,#ffd0dc 0,transparent 45%)}
+.hand{font-family:'Caveat','Segoe Script',cursive}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
+#gate{position:fixed;inset:0;z-index:100;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;transition:opacity .9s,transform .9s}
+#gate.open{opacity:0;transform:scale(1.2);pointer-events:none}
+#gate .big{font-size:7rem;animation:beat 1s infinite}
+#gate h1{font-size:clamp(1.6rem,6vw,2.5rem);font-weight:400}
+#gate p{font-size:1.6rem;color:var(--blush)}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.14)}}
+section{max-width:760px;margin:0 auto;padding:72px 22px;text-align:center}
+h2{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:400;margin-bottom:6px}
+.sub{font-size:1.5rem;color:var(--red);margin-bottom:26px}
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#hero .hand{font-size:1.8rem;color:var(--red)}
+#bigheart{position:relative;width:min(80vw,340px);aspect-ratio:1;border:0;background:none;cursor:pointer;animation:beat 1.4s infinite;margin:10px 0}
+#bigheart svg{width:100%;height:100%;will-change:transform}
+#bigheart span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:clamp(1.6rem,8vw,2.6rem);line-height:1.15;padding-bottom:12%;user-select:none}
+#bigheart small{font-size:1.4rem;font-family:'Caveat',cursive}
+.scroll{margin-top:20px;font-size:1.4rem;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(10px)}}
+.card{background:#fff;border-radius:6px 30px 6px 30px;padding:30px 26px;box-shadow:0 14px 40px rgba(214,37,77,.16);border-left:6px solid var(--red)}
+#typed{min-height:13em;text-align:left;font-size:1.1rem;white-space:pre-wrap;font-family:'Caveat',cursive;font-size:1.6rem;line-height:1.5}
+.cur{display:inline-block;width:2px;height:1.1em;background:var(--red);vertical-align:middle;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+button.btn{font:400 1.15rem 'DM Serif Display',serif;background:var(--red);color:#fff;border:0;border-radius:999px;padding:13px 28px;cursor:pointer;box-shadow:0 6px 0 var(--deep);transition:.15s;touch-action:manipulation}
+button.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--deep)}
+button.btn.alt{background:#fff;color:var(--red);box-shadow:0 6px 0 var(--pink);border:2px solid var(--red)}
+/* love meter */
+.meter{height:34px;border-radius:999px;background:var(--blush);border:3px solid var(--red);overflow:hidden;max-width:420px;margin:0 auto 14px}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--red));transition:width .1s}
+#pct{font-size:2.4rem;color:var(--red);min-height:1.4em}
+/* pop game */
+#sky{position:relative;height:320px;border-radius:24px;background:linear-gradient(#ffe3ea,#fff);border:2px solid var(--blush);overflow:hidden;margin-bottom:14px}
+.balloon{position:absolute;font-size:3.4rem;background:none;border:0;cursor:pointer;animation:sway 3s ease-in-out infinite alternate;touch-action:manipulation}
+@keyframes sway{from{transform:translate(-14px,8px) rotate(-6deg)}to{transform:translate(14px,-12px) rotate(6deg)}}
+.pop{animation:popo .35s forwards!important}
+@keyframes popo{to{transform:scale(2.2);opacity:0}}
+#sentence{min-height:2.6em;font-size:2rem;color:var(--red)}
+/* cake */
+.cake{width:240px;margin:20px auto 10px;display:block}
+.flame{transform-origin:center;transform-box:fill-box;animation:fl .4s infinite alternate;transition:.4s}
+.out .flame{opacity:0;transform:scale(0)}
+@keyframes fl{to{transform:scale(1.15,.9)}}
+#cakeMsg{margin-top:14px;min-height:3em;font-size:1.5rem;color:var(--red)}
+/* flip */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.flip{position:relative;height:150px;perspective:800px;cursor:pointer;border:0;background:none;color:inherit}
+.flip i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;border-radius:20px;backface-visibility:hidden;transition:transform .6s;font-style:normal}
+.flip .f{background:#fff;border:2px solid var(--pink);font-size:2.6rem}
+.flip .b{background:var(--red);color:#fff;transform:rotateY(180deg);font-size:1.4rem}
+.flip.on .f{transform:rotateY(-180deg)}.flip.on .b{transform:rotateY(0)}
+#qa{position:relative;height:120px;margin-top:20px}
+#qa button{position:absolute;top:30px}
+#yes{left:calc(50% - 120px)}#no{left:calc(50% + 10px);background:#999;box-shadow:0 6px 0 #666}
+#coupon{margin:24px auto 0;max-width:420px;min-height:90px;font-size:1.6rem}
+.tick{border:3px dashed var(--red);border-radius:16px;padding:18px;background:#fff;animation:pp .5s}
+@keyframes pp{from{transform:scale(.6) rotate(-6deg);opacity:0}}
+footer{padding:50px 20px 90px;text-align:center;font-size:1.6rem;color:var(--red)}
+#toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,130px);background:var(--deep);color:#fff;padding:12px 22px;border-radius:999px;z-index:60;transition:.5s;max-width:90vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+#mute{position:fixed;top:14px;right:14px;z-index:70;font-size:1.4rem;background:#fff;border:0;border-radius:50%;width:46px;height:46px;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer}
+button:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<div id="gate" role="button" tabindex="0">
+  <div class="big">❤️</div>
+  <h1 id="gateTitle">Ada yang berdetak untukmu</h1>
+  <p class="hand">ketuk hatinya untuk membuka</p>
+</div>
+<button id="mute" aria-label="Musik">🔊</button>
+
+<section id="hero">
+  <p class="hand">selamat ulang tahun yang ke 21 tahun</p>
+  <button id="bigheart" aria-label="Ketuk hati">
+    <svg viewBox="0 0 200 180"><path d="M100 172C14 112 6 58 36 30c24-22 54-8 64 14 10-22 40-36 64-14 30 28 22 82-64 142z" fill="#d6254d"/><path d="M52 44c-14 8-22 26-18 44" stroke="#ff8fab" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
+    <span><b id="nm" style="font-weight:400">Sayang</b><small>ketuk aku 💗</small></span>
+  </button>
+  <p class="hand" style="font-size:1.9rem">23 November 2005</p>
+  <p class="scroll hand">gulir ke bawah, banyak kejutan ↓</p>
+</section>
+
+<section>
+  <h2>Surat dari hatiku</h2>
+  <p class="sub hand">dibaca pelan-pelan ya</p>
+  <div class="card"><div id="typed"></div></div>
+</section>
+
+<section>
+  <h2>Ukur cintaku</h2>
+  <p class="sub hand">tahan tombolnya, lihat seberapa besar</p>
+  <div class="meter"><i id="bar"></i></div>
+  <div id="pct" class="hand">0%</div>
+  <button class="btn" id="hold">Tahan di sini 💓</button>
+</section>
+
+<section>
+  <h2>Pecahkan hatinya</h2>
+  <p class="sub hand">ketuk semua hati untuk membuka pesan rahasia</p>
+  <div id="sky"></div>
+  <div id="sentence" class="hand"></div>
+</section>
+
+<section>
+  <h2>Kue cinta</h2>
+  <p class="sub hand">buat permohonan, lalu tiup lilinnya</p>
+  <svg class="cake" id="cake" viewBox="0 -30 200 230" aria-hidden="true">
+    <path d="M100 190C14 130 6 76 36 48c24-22 54-8 64 14 10-22 40-36 64-14 30 28 22 82-64 142z" fill="#ff8fab"/>
+    <path d="M36 48c24-22 54-8 64 14 10-22 40-36 64-14 8 8 12 18 13 29-20 20-40-4-52 18-8-14-22-14-25 6-4-20-20-22-28-4-12-22-32 2-49-12 0-12 4-24 13-37z" fill="#fff"/>
+    <circle cx="70" cy="100" r="6" fill="#d6254d"/><circle cx="100" cy="125" r="6" fill="#d6254d"/><circle cx="130" cy="100" r="6" fill="#d6254d"/>
+    <g fill="#ffc857"><rect x="62" y="22" width="8" height="30" rx="3" fill="#fff"/><rect x="96" y="14" width="8" height="30" rx="3" fill="#fff"/><rect x="130" y="22" width="8" height="30" rx="3" fill="#fff"/>
+    <ellipse class="flame" cx="66" cy="12" rx="6" ry="10"/><ellipse class="flame" cx="100" cy="4" rx="6" ry="10"/><ellipse class="flame" cx="134" cy="12" rx="6" ry="10"/></g>
+  </svg>
+  <button class="btn" id="blow">Tiup lilin 💨</button>
+  <p id="cakeMsg" class="hand"></p>
+</section>
+
+<section>
+  <h2>Alasan aku jatuh hati</h2>
+  <p class="sub hand">balik kartunya satu per satu</p>
+  <div class="grid" id="reasons"></div>
+</section>
+
+<section>
+  <h2>Satu pertanyaan penting</h2>
+  <p class="sub hand" id="q">Boleh aku jadi rumah untuk hatimu tahun depan juga?</p>
+  <div id="qa"><button class="btn" id="yes">Boleh banget ❤️</button><button class="btn alt" id="no">Nggak</button></div>
+</section>
+
+<section>
+  <h2>Kupon cinta</h2>
+  <p class="sub hand">ketuk tombolnya, boleh diklaim hari ini juga</p>
+  <button class="btn" id="cp">Ambil kupon 🎟️</button>
+  <div id="coupon" class="hand"></div>
+</section>
+
+<footer class="hand"><div id="foot"></div>
+  <div style="font-size:1.1rem;margin-top:12px;opacity:.7">psst… ketuk hati besar di atas 7 kali 🤫</div></footer>
+<div id="toast"></div>
+
+<script>
+/* ====== UBAH DI SINI ====== */
+const CFG = {
+  nama: "Selin",
+  dari: "R",
+  musik: "lagu.mp3",
+  surat:
+`Selamat ulang tahun, SELINDIKUHH ❤️
+
+Mungkin buat sebagian orang, hari ini hanyalah tanggal yang berganti.
+Tapi buatku, hari ini adalah pengingat bahwa dunia pernah menghadirkan seseorang yang begitu berarti.
+
+Terima kasih sudah membuatku
+senyum-senyum sendiri di depan layar.
+Semoga umur barumu penuh tawa, sehat,
+Dan memenuhi hal yang kamu inginkan.
+
+Come here to me di setiap km capek love,
+ingat ya, kamu punya satu hati di sini
+yang akan selalu ada untukmu pretty!.
+
+Aku sayang kamu. Banyak. 💗`,
+  kata: ["Aku","sayang","kamu","selamanya","💖"],
+  alasan: [
+    "Kamu punyaku pokoee!",
+    "Kamu sayangkuuu!",
+    "Kamu cantikuuu!",
+    "Kamu bikin aku gila ih tiap hari",
+    "If I could choose again, I'd still choose you, a thousand times over.",
+    "I don't promise to make every day perfect, but I promise to make you feel loved every single day."
+  ],
+  kupon: [
+    "Kupon dipeluk seumur hidup 🤗",
+    "Kupon makan aku sampe puas 🍜",
+    "Kupon pijat bokong 💆",
+    "Kupon Selamanya sama aku!",
+    "Kupon Harus sama aku terus! 😤",
+    "Kupon mesra mesra an selamanya! 👂",
+    "Kupon jadi cintaku selamanya! ",
+    "Kupon dapat bunga beneran, tunggu ya 💐"
+  ],
+  penutup: "Dibuat dengan sayang oleh {dari} 💌"
+};
+/* ========================== */
+const $=s=>document.querySelector(s), rnd=a=>a[Math.floor(Math.random()*a.length)];
+const nm=CFG.nama;$('#nm').textContent=nm;
+$('#gateTitle').textContent='Ada yang berdetak untuk '+nm;
+$('#foot').textContent=CFG.penutup.replace('{dari}',CFG.dari);
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2800)}
+
+/* ---- canvas: hujan hati + konfeti hati ---- */
+const cv=$('#fx'),cx=cv.getContext('2d');let W,H;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
+const E=['❤️','💖','💗','💕','💘','🩷'];
+const SP={};
+function spr(e){if(SP[e])return SP[e];const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');g.font='48px serif';g.textAlign='center';g.textBaseline='middle';g.fillText(e,32,36);return SP[e]=c}
+E.forEach(spr);
+let hearts=Array.from({length:20},()=>({x:Math.random()*W,y:Math.random()*H,s:14+Math.random()*18,v:.6+Math.random()*1.1,d:Math.random()*6,e:rnd(E)}));
+let conf=[];
+function boom(x=W/2,y=H/2,n=70){n=Math.min(n,45);if(conf.length>160)return;for(let i=0;i<n;i++){const a=Math.random()*6.28,v=3+Math.random()*7;conf.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-4,e:rnd(E),s:12+Math.random()*14,l:90+Math.random()*60})}}
+(function loop(){cx.clearRect(0,0,W,H);cx.textBaseline='middle';
+ hearts.forEach(p=>{p.y+=p.v;p.d+=.02;p.x+=Math.sin(p.d)*.7;if(p.y>H+30){p.y=-30;p.x=Math.random()*W}cx.drawImage(spr(p.e),p.x-p.s/2,p.y-p.s/2,p.s*1.3,p.s*1.3)});
+ conf=conf.filter(c=>c.l-->0);conf.forEach(c=>{c.vy+=.18;c.x+=c.vx;c.y+=c.vy;c.vx*=.99;cx.globalAlpha=Math.min(1,c.l/30);cx.drawImage(spr(c.e),c.x-c.s/2,c.y-c.s/2,c.s*1.3,c.s*1.3)});cx.globalAlpha=1;
+ requestAnimationFrame(loop)})();
+addEventListener('pointerdown',e=>{if(!e.target.closest('button'))hearts.push({x:e.clientX,y:e.clientY,s:22,v:-1.5,d:0,e:rnd(E)})});
+setInterval(()=>{hearts=hearts.filter(h=>h.y>-60||h.v>0)},1000);
+
+/* ---- musik ---- */
+let ac,muted=false,playing=false;
+const N={G4:392,A4:440,B4:494,C5:523,D5:587,E5:659,F5:698,G5:784};
+const song=[['G4',.5],['G4',.25],['A4',1],['G4',1],['C5',1],['B4',2],['G4',.5],['G4',.25],['A4',1],['G4',1],['D5',1],['C5',2],['G4',.5],['G4',.25],['G5',1],['E5',1],['C5',1],['B4',1],['A4',2],['F5',.5],['F5',.25],['E5',1],['C5',1],['D5',1],['C5',2]];
+function play(){if(muted)return;
+ if(CFG.musik){if(!play.a){play.a=new Audio(CFG.musik);play.a.loop=true;play.a.onerror=()=>{CFG.musik='';play.a=null;play()}}play.a.play().catch(()=>{});return}
+ if(playing)return;ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();playing=true;let t=ac.currentTime+.05;
+ song.forEach(([n,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=N[n];g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+d*.42);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+d*.45);t+=d*.45});
+ setTimeout(()=>playing=false,(t-ac.currentTime)*1000)}
+$('#mute').onclick=()=>{muted=!muted;$('#mute').textContent=muted?'🔇':'🔊';if(play.a&&muted)play.a.pause();if(!muted)play()};
+
+/* ---- gerbang + surat ---- */
+let typed=0,opened=false;
+function type(){if(typed)return;typed=1;const t=CFG.surat.replace('{nama}',nm),el=$('#typed');let i=0;
+ const tick=()=>{el.textContent=t.slice(0,++i);el.insertAdjacentHTML('beforeend','<span class="cur"></span>');if(i<t.length)setTimeout(tick,45)};tick()}
+function openGate(){if(opened)return;opened=true;$('#gate').classList.add('open');boom(W/2,H/2,150);play()}
+$('#gate').onclick=openGate;$('#gate').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')openGate()};
+new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting&&opened)type()}),{threshold:.4}).observe($('#typed'));
+
+/* ---- hati besar (easter egg 7x) ---- */
+let tp=0;$('#bigheart').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();boom(r.x+r.width/2,r.y+r.height/2,25);
+ if(++tp===7){tp=0;for(let i=0;i<6;i++)setTimeout(()=>boom(Math.random()*W,Math.random()*H*.6,70),i*250);toast('Rahasia ditemukan! Kamu dapat 1 kupon cium di pipi 😚')}};
+
+/* ---- love meter ---- */
+let lv=0,hi=null;const bar=$('#bar'),pct=$('#pct');
+function up(){lv+=lv<100?1.2:lv<200?2:4;bar.style.width=Math.min(lv,100)+'%';
+ pct.textContent=lv<100?Math.floor(lv)+'%':lv<300?Math.floor(lv)+'% (meluber!) 😳':'∞% 💖';
+ if(lv>=100&&Math.floor(lv)%40===0)boom(W/2,H*.5,12);
+ if(lv>=300&&!up.d){up.d=1;boom(W/2,H/2,200);toast('Tidak terhingga. Alat ukurnya rusak 😂')}}
+const st=e=>{e.preventDefault();clearInterval(hi);hi=setInterval(up,40)},sp=()=>clearInterval(hi);
+const hb=$('#hold');['pointerdown'].forEach(n=>hb.addEventListener(n,st));['pointerup','pointerleave','pointercancel'].forEach(n=>hb.addEventListener(n,sp));
+
+/* ---- pecahkan hati ---- */
+let popped=0;const sky=$('#sky'),sn=$('#sentence');
+CFG.kata.forEach((w,i)=>{const b=document.createElement('button');b.className='balloon';b.textContent=rnd(['❤️','💗','💖','💘']);b.setAttribute('aria-label','Hati');
+ b.style.left=(6+i*18)+'%';b.style.top=(10+(i%2)*45+Math.random()*12)+'%';b.style.animationDelay=(-Math.random()*3)+'s';
+ b.onclick=()=>{if(b.classList.contains('pop'))return;b.classList.add('pop');const r=b.getBoundingClientRect();boom(r.x+r.width/2,r.y+r.height/2,18);
+  popped++;sn.textContent=CFG.kata.slice(0,popped).join(' ');
+  if(popped===CFG.kata.length){boom(W/2,H/2,200);toast('Pesannya lengkap! Aku sayang kamu 💖')}};
+ sky.append(b)});
+
+/* ---- kue ---- */
+$('#blow').onclick=()=>{const c=$('#cake');
+ if(c.classList.contains('out')){c.classList.remove('out');$('#cakeMsg').textContent='Lilinnya nyala lagi, buat harapan baru ya 🕯️';return}
+ c.classList.add('out');boom(innerWidth/2,innerHeight/2,130);play();
+ $('#cakeMsg').textContent='Yay! Semoga harapanmu jadi nyata, '+nm+' 🎂';$('#blow').textContent='Nyalakan lagi 🔥'};
+
+/* ---- alasan ---- */
+CFG.alasan.forEach(r=>{const d=document.createElement('button');d.className='flip';d.innerHTML='<i class="f">❤️</i><i class="b hand">'+r+'</i>';
+ d.onclick=()=>d.classList.toggle('on');$('#reasons').append(d)});
+
+/* ---- tombol Nggak kabur ---- */
+const no=$('#no'),yes=$('#yes'),box=$('#qa');let esc=0;
+const nos=['Nggak','Yakin?','Coba pikir lagi','Awas lho 😤','Masa sih?','Ayolah 🥺','Tombol ini rusak 😅'];
+function run(e){if(e)e.preventDefault();esc++;no.textContent=nos[Math.min(esc,nos.length-1)];
+ no.style.left=Math.random()*(box.clientWidth-no.offsetWidth)+'px';no.style.top=Math.random()*(box.clientHeight-50)+'px';
+ yes.style.transform='scale('+Math.min(1+esc*.12,1.8)+')'}
+no.addEventListener('mouseenter',run);no.addEventListener('touchstart',run,{passive:false});no.onclick=run;
+yes.onclick=()=>{boom(W/2,H/2,220);play();$('#q').textContent='Yay! Hatimu resmi kuhuni lagi 💞';box.style.display='none';toast('Diperpanjang sampai tahun depan 😘')};
+
+/* ---- kupon ---- */
+$('#cp').onclick=()=>{$('#coupon').innerHTML='<div class="tick">'+rnd(CFG.kupon)+'</div>';boom(W/2,H*.7,35)};
+</script>
+</body>
+</html>
